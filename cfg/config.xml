@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<site>
+		<environment>dev</environment> <!-- dev, test, stag or prod -->
+		<version>1.0</version>
+	</site>
+	<api>
+		<dev>
+			<login>http://localhost/leadsapp/api/login</login>
+			<allLeads>http://localhost/leadsapp/api/allleads</allLeads>
+			<lead>http://localhost/leadsapp/api/lead</lead>
+			<colleagues>http://localhost/leadsapp/api/colleagues</colleagues>
+			<transferr>http://localhost/leadsapp/api/transferrlead</transferr>
+			<pick>http://localhost/leadsapp/api/picklead</pick>
+			<statuses>http://localhost/leadsapp/api/statuses</statuses>
+			<setstatus>http://localhost/leadsapp/api/setstatus</setstatus>
+			<lost>http://localhost/leadsapp/api/lostreasons</lost>
+			<setlost>http://localhost/leadsapp/api/setlost</setlost>
+			<setreject>http://localhost/leadsapp/api/setrejected</setreject>
+		</dev>
+		<test>
+			<login>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/login</login>
+			<allLeads>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/allleads</allLeads>
+			<lead>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/lead</lead>
+			<colleagues>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/colleagues</colleagues>
+			<transferr>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/transferrlead</transferr>
+			<pick>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/picklead</pick>
+			<statuses>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/statuses</statuses>
+			<setstatus>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/setstatus</setstatus>
+			<lost>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/lostreasons</lost>
+			<setlost>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/setlost</setlost>
+			<setreject>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/setrejected</setreject>
+		</test>
+		<stag />
+		<prod />
+	</api>
+</config>

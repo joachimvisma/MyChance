@@ -1,0 +1,55 @@
+<header>
+	<div id="title">
+		<div id="left"></div>
+		<img src="img/logo.png">
+		MyChance
+		<div id="right">
+			<a href="javascript:;" onclick="app.logout()">X</a>
+		</div>
+	</div>
+</header>
+<section id="content">
+	<div class="text-center-splash">
+		<img src="img/my_chance__refresh.png" class="loading_rotate">
+		<br><br>Laster<br>Vennligst vent
+	</div>
+</section>
+<footer>
+	<div id="margin">
+		<a href="javascript:;" class="button button_icon red" id="actionUpdate"><img src="img/my_chance__refresh.png"> Oppfrisk</a>
+	</div>
+</footer>
+<script>
+Visma_Request.post(Visma_Config.getApiUrl('allLeads'), 'userid=' + Visma_Oaut.getToken('VLPOauthToken'), function(data){
+	if(data.success == true){
+		$("#mainContent").empty().html(data.data);
+		leadListInit();
+	} else {
+		alert("En uventet feil oppstod");
+		console.log(data);
+	}
+});
+
+function leadListInit(){
+	$("#allLeads li a").click(function(){
+		Visma_Navigation.navigate('lead', 'leadid=' + $(this).attr("data-lead-id"));
+		return false;
+	});
+	$("#actionUpdate").click(function(){
+		var thisLink = this;
+		$(thisLink).find("img").addClass("loading_rotate");
+		$("#content").empty().html('<div class="text-center-splash"><img src="img/my_chance__refresh.png" class="loading_rotate"><br><br>Laster<br>Vennligst vent</div>');
+		
+		Visma_Request.post(Visma_Config.getApiUrl('allLeads'), 'userid=' + Visma_Oaut.getToken('VLPOauthToken'), function(data){
+			$(thisLink).find("img").removeClass("loading_rotate");
+			if(data.success == true){
+				$("#mainContent").empty().html(data.data);
+				leadListInit();
+			} else {
+				alert("En uventet feil oppstod");
+				console.log(data);
+			}
+		});
+	});
+}
+</script>

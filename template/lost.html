@@ -1,0 +1,53 @@
+<header>
+	<div id="title">
+		<div id="left">
+			<a href="javascript:;" class="back" onclick="Visma_Navigation.goBack()">&nbsp;</a>
+		</div>
+		<img src="img/logo.png">
+		MyChance
+		<div id="right">
+			<a href="javascript:;" onclick="app.logout()">X</a>
+		</div>
+	</div>
+</header>
+<section id="content">
+	<div class="text-center-splash">
+		<img src="img/my_chance__refresh.png" class="loading_rotate">
+		<br><br>Laster<br>Vennligst vent
+	</div>
+</section>
+<script>
+Visma_Request.post(Visma_Config.getApiUrl('lost'), '', function(data){
+	if(data.success == true){
+		$("#mainContent").empty().html(data.data);
+		statusestInit();
+	} else {
+		alert("En uventet feil oppstod");
+		console.log(data);
+	}
+});
+
+function statusestInit(){
+	// Click
+	$("#lostStatuses li a").click(function(){		
+		var leadid = Visma_Request.get('leadid');
+		if(leadid == ''){
+			alert('Ingen leadID sendt!');
+			popupClose();
+			Visma_Navigation.navigate('home');
+		} else {
+			popup('<img src="img/my_chance__refresh.png" class="loading_rotate"><br><br>Laster<br>Vennligst vent', 170);
+			Visma_Request.post(Visma_Config.getApiUrl('setlost'), 'userid=' + Visma_Oaut.getToken('VLPOauthToken') + '&leadid=' + leadid + '&lostid=' + $(this).attr("data-status-id"), function(data){
+				if(data.success == true){
+					popupClose();
+					Visma_Navigation.navigate('home');
+				} else {
+					alert("En uventet feil oppstod");
+					console.log(data);
+				}
+			});
+		}
+		return false;
+	});
+}
+</script>

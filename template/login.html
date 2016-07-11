@@ -1,0 +1,48 @@
+<div id="login">
+	<h1>Logg inn MyChance</h1>
+	<form method="POST" action="" id="loginForm">
+		<fieldset>
+			<label for="username">Brukernavn</label>
+			<input type="text" name="username" id="username" class="input" value="" required>
+		</fieldset>
+		<fieldset>
+			<label for="password">Passord</label>
+			<input type="password" name="password" id="password" class="input" value="" required>
+		</fieldset>
+		<fieldset>
+			<input type="submit" name="login" id="loginBtn" class="submit" value="Logg inn">
+		</fieldset>
+	</form>
+	<div id="loginResult"></div>
+</div>
+<script>
+	// On submit event
+	$("#loginForm").submit(function(){
+		
+		// Checking valid form
+		var requiredResult = Visma_Form.validateForm($("#loginForm"));
+		if(requiredResult === true){
+			
+			// Showing the loading image
+			$("#loginResult").empty().html('<img src="img/my_chance__refresh.png" class="loading_rotate">');
+			
+			// Requesting the login
+			Visma_Request.post(Visma_Config.getApiUrl('login'), $("#loginForm").serialize(), function(data){
+				console.log(data);
+				if(data.success == true){
+					// Setting token
+					Visma_Oaut.setToken('VLPOauthToken', data.data.so_partner_contact_id);
+					$("#loginResult").empty().html('Suksess!<br>Laster, vennligst vent').addClass("blue");
+					Visma_Navigation.navigate('home');
+				} else {
+					if(data.errorType == 'no_permission'){
+						$("#loginResult").empty().html("Du har ikke rettigheter til &aring; logge inn.").addClass("red");
+					} else {
+						$("#loginResult").empty().html('Feil brukernavn / passord').addClass("red");
+					}
+				}
+			});
+		}
+		return false;
+	});
+</script>

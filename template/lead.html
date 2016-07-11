@@ -1,0 +1,92 @@
+<header>
+	<div id="title">
+		<div id="left">
+			<a href="javascript:;" class="back" onclick="Visma_Navigation.goBack()">&nbsp;</a>
+		</div>
+		<img src="img/logo.png">
+		MyChance
+		<div id="right">
+			<a href="javascript:;" onclick="app.logout()">X</a>
+		</div>
+	</div>
+</header>
+<section id="content">
+	<div class="text-center-splash">
+		<img src="img/my_chance__refresh.png" class="loading_rotate">
+		<br><br>Laster<br>Vennligst vent
+	</div>
+</section>
+<script>
+var leadid = Visma_Request.get('leadid');
+if(leadid == ''){
+	alert('Ingen leadID sendt!');
+	Visma_Navigation.navigate('home');
+} else {
+	Visma_Request.post(Visma_Config.getApiUrl('lead'), 'userid=' + Visma_Oaut.getToken('VLPOauthToken') + '&leadid=' + leadid, function(data){
+		if(data.success == true){
+			$("#mainContent").empty().html(data.data);
+			leadInit();
+		} else {
+			alert("En uventet feil oppstod");
+			console.log(data);
+		}
+	});
+}
+/**
+ * Pageload for leads
+ */
+function leadInit(){
+	// Picking a case
+	$("#actionPickCase").click(function(){
+		popup('<img src="img/my_chance__refresh.png" class="loading_rotate"><br><br>Laster<br>Vennligst vent', 170);
+		Visma_Request.post(Visma_Config.getApiUrl('pick'), 'userid=' + Visma_Oaut.getToken('VLPOauthToken') + '&leadid=' + leadid, function(data){
+			if(data.success == true){
+				popupClose();
+				
+				if(parseInt(data.data.LeadPickedByPersonId) != parseInt(Visma_Oaut.getToken('VLPOauthToken'))){
+					popup('<h2>Beklager!</h2>Dette leadet er allerede<br>plukket av noen andre<br><a href="javascript:;" onClick="popupClose();Visma_Navigation.navigate(\'home\');" class="submit popup">OK</a>', 206);
+				} else {
+					Visma_Navigation.navigate('lead');
+				}
+			} else {
+				alert("En uventet feil oppstod");
+				console.log(data);
+			}
+		});
+		return false;
+	});
+	
+	// Transferring a case
+	$("#actionTrasferr").click(function(){
+		Visma_Navigation.navigate("transferr");
+		return false;
+	});
+	
+	// Rejecting a case
+	$("#actionReject").click(function(){
+		Visma_Navigation.navigate("reject");
+		return false;
+	});
+	
+	// Giving feedback on a case
+	$("#actionFeedback").click(function(){
+		Visma_Navigation.navigate("statuses");
+		return false;
+	});
+	
+	// Calling the user
+	$("#actionCall").click(function(){
+		return true;
+	});
+	
+	// SMSing the user
+	$("#actionSms").click(function(){
+		return true;
+	});
+	
+	// Emailing the user
+	$("#actionEmail").click(function(){
+		return true;
+	});
+}
+</script>
