@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 	<site>
-		<environment>dev</environment> <!-- dev, test, stag or prod -->
+		<environment>test</environment> <!-- dev, test, stag or prod -->
 		<version>1.0</version>
 	</site>
 	<api>
