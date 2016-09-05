@@ -67,7 +67,7 @@ ul.list li span.cancel { color: #333; text-align: center; float: none; padding: 
 ul.list li a:active { color: #fff; }
 
 /* UNREAD LIST ITEM */
-ul.list li.unread * { font-weight: bold; }
+ul.list li.unread a { font-weight: 700; }
 
 /* ICONS */
 .icon { background: transparent url() no-repeat center center; }

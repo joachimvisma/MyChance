@@ -17,16 +17,15 @@ var app = {
      */
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        //$(this.onDeviceReady);
+    	document.addEventListener('resume', this.onResume, false);
+    	document.addEventListener('backbutton', this.onBackKeyDown, false);
+        $(this.onDeviceReady);
         Visma_Config.refreshConfig();
     },
     /** 
      * Device Ready
      */
     onDeviceReady: function() {
-    	document.addEventListener('resume', this.onResume, false);
-    	document.addEventListener('backbutton', this.onBackKeyDown, false);
-		
         // Checking login
     	if(!Visma_Oaut.isLoggedIn()){
     		Visma_Navigation.navigate('login');
