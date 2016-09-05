@@ -17,6 +17,8 @@
 			<lost>http://localhost/leadsapp/api/lostreasons</lost>
 			<setlost>http://localhost/leadsapp/api/setlost</setlost>
 			<setreject>http://localhost/leadsapp/api/setrejected</setreject>
+			<predefemail>http://localhost/leadsapp/api/predefemail</predefemail>
+			<predefsms>http://localhost/leadsapp/api/predefsms</predefsms>
 		</dev>
 		<test>
 			<login>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/login</login>
@@ -30,6 +32,8 @@
 			<lost>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/lostreasons</lost>
 			<setlost>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/setlost</setlost>
 			<setreject>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/setrejected</setreject>
+			<predefemail>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/predefemail</predefemail>
+			<predefsms>http://testportal.vismasoftware.com/software/support/portal/leadsapp/api/predefsms</predefsms>
 		</test>
 		<stag />
 		<prod />

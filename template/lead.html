@@ -81,12 +81,14 @@ function leadInit(){
 	
 	// SMSing the user
 	$("#actionSms").click(function(){
-		return true;
+		Visma_Navigation.navigate("predefsms");
+		return false;
 	});
 	
 	// Emailing the user
 	$("#actionEmail").click(function(){
-		return true;
+		Visma_Navigation.navigate("predefemail");
+		return false;
 	});
 }
 </script>

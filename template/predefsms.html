@@ -1,0 +1,34 @@
+<header>
+	<div id="title">
+		<div id="left">
+			<a href="javascript:;" class="back" onclick="Visma_Navigation.goBack()">&nbsp;</a>
+		</div>
+		<img src="img/logo.png">
+		MyChance
+		<div id="right">
+			<a href="javascript:;" onclick="app.logout()">X</a>
+		</div>
+	</div>
+</header>
+<section id="content">
+	<div class="text-center-splash">
+		<img src="img/my_chance__refresh.png" class="loading_rotate">
+		<br><br>Laster<br>Vennligst vent
+	</div>
+</section>
+<script>
+var leadid = Visma_Request.get('leadid');
+if(leadid == ''){
+	alert('Ingen leadID sendt!');
+	Visma_Navigation.navigate('home');
+} else {
+	Visma_Request.post(Visma_Config.getApiUrl('predefsms'), 'userid=' + Visma_Oaut.getToken('VLPOauthToken') + '&leadid=' + leadid, function(data){
+		if(data.success == true){
+			$("#mainContent").empty().html(data.data);
+		} else {
+			alert("En uventet feil oppstod");
+			console.log(data);
+		}
+	});
+}
+</script>
