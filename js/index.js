@@ -19,7 +19,7 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     	document.addEventListener('resume', this.onResume, false);
     	document.addEventListener('backbutton', this.onBackKeyDown, false);
-        //$(this.onDeviceReady);
+        $(this.onDeviceReady);
         Visma_Config.refreshConfig();
     },
     /** 
