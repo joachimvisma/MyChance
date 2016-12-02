@@ -30,10 +30,22 @@
 			Visma_Request.post(Visma_Config.getApiUrl('login'), $("#loginForm").serialize(), function(data){
 				console.log(data);
 				if(data.success == true){
-					// Setting token
+					// Setting token indicating your are logged in
 					Visma_Oaut.setToken('VLPOauthToken', data.data.so_partner_contact_id);
+					
+					// Setting carnival values
+					Carnival.setUserId(
+						function callback(data) {
+							console.log('setUserId successfully returned');
+					},
+					function errorHandler(err) {
+						console.log('setUserId returned error: ' + err);
+					}, 'user_id_' + data.data.so_partner_contact_id );
+					
+					// Redirecting you
 					$("#loginResult").empty().html('Suksess!<br>Laster, vennligst vent').addClass("blue");
 					Visma_Navigation.navigate('home');
+					
 				} else {
 					if(data.errorType == 'no_permission'){
 						$("#loginResult").empty().html("Du har ikke rettigheter til &aring; logge inn.").addClass("red");
