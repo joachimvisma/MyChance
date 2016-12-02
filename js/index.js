@@ -52,7 +52,20 @@ var app = {
      */
     logout: function(){
     	if(confirm("Er du sikker på at du vil logge ut?")){
+    		
+    		// Removing the token
     		Visma_Oaut.removeToken('VLPOauthToken');
+    		
+    		// Removing carnival token
+    		Carnival.setUserId(
+				function callback(data) {
+					console.log('logout setUserId successfully returned');
+			},
+			function errorHandler(err) {
+				console.log('logout setUserId returned error: ' + err);
+			}, null );
+    		
+    		// Redirecting you
         	Visma_Navigation.navigate('login');
     	}
     	return false;
