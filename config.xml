@@ -18,12 +18,7 @@
   <preference name="disable-cursor" value="false"/>
   <preference name="android-minSdkVersion" value="14"/>
   <preference name="android-installLocation" value="auto"/>
-  <gap:plugin name="org.apache.cordova.console"/>
-  <gap:plugin name="org.apache.cordova.inappbrowser"/>
-  <gap:plugin name="org.apache.cordova.media"/>
   <gap:plugin name="org.apache.cordova.network-information"/>
-  <gap:plugin name="org.apache.cordova.splashscreen"/>
-  <gap:plugin name="org.apache.cordova.vibration"/>
   <icon src="corp_mychance_logo_blue_96px.png"/>
   <icon src="www/res/icon/android/corp_mychance_logo_blue_36px.png" gap:platform="android" gap:qualifier="ldpi"/>
   <icon src="www/res/icon/android/corp_mychance_logo_blue_48px.png" gap:platform="android" gap:qualifier="mdpi"/>
